@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - Métodos Numéricos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about-header {
+            width: 100%;
+            padding: 1.5rem 3rem;
+            background: rgba(30, 41, 59, 0.7);
+            border-bottom: 1px solid var(--panel-border);
+            text-align: left;
+        }
+
+        .about-container {
+            max-width: 800px;
+            width: 100%;
+            margin: 2rem;
+            padding: 2.5rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .about-container h1,
+        .about-container h2,
+        .about-container h3 {
+            color: var(--text-primary);
+        }
+
+        .about-container h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        .about-container h2 {
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--panel-border);
+            padding-bottom: 0.5rem;
+        }
+
+        .about-container h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .about-container p {
+            margin-bottom: 1rem;
+        }
+
+        .about-container ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-container li {
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-back {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: opacity 0.2s;
+        }
+
+        .btn-back:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="about-header">
+        <a href="index.html" class="btn-back"><span>&larr;</span> Voltar ao Simulador</a>
+    </header>
+
+    <main class="about-container glass-panel">
+        <h1 style="color: var(--accent);">Simulador Algorítmico de Métodos Numéricos</h1>
+        <p style="font-size: 1.1rem; color: var(--text-primary);">Uma ferramenta educacional em formato Web
+            (HTML/JS/CSS) desenvolvida para o ensino prático com demonstrações iterativas de métodos clássicos de
+            Cálculo Numérico.</p>
+
+        <p>Este projeto foi desenvolvido como material instrucional para a disciplina de <strong>Métodos Matemáticos e
+                Computacionais</strong> vinculada ao programa de <strong>Doutorado em Modelagem Matemática e
+                Computacional</strong> do CEFET.</p>
+
+        <h2>Descrição do Projeto</h2>
+        <p>O Simulador atua como uma interface de apoio de aprendizagem, aproximando o entendimento teórico-matemático à
+            modelagem e programação computacional acadêmica.</p>
+        <p>Compondo uma robusta aplicação client-side local, o projeto permite que os doutorandos e pesquisadores testem
+            livremente diferentes métodos clássicos, simulem os cálculos minuciosos através de iterações passo a passo
+            (enxergando as substituições das fórmulas), e copiem livremente as arquiteturas implementadas em linguagem
+            base.</p>
+
+        <h2>Métodos Computacionais Suportados</h2>
+
+        <h3>Teoria de Busca de Raízes e Zeros de Funções</h3>
+        <ul>
+            <li>Método da Bisseção</li>
+            <li>Método de Newton-Raphson</li>
+            <li>Método da Secante</li>
+        </ul>
+
+        <h3>Aproximações Polinomiais e Interpolações</h3>
+        <ul>
+            <li>Dispositivo prático de Briot-Ruffini</li>
+            <li>Interpolação de Lagrange</li>
+            <li>Construção de matrizes do Algoritmo de Neville</li>
+        </ul>
+
+        <h2>Principais Funcionalidades</h2>
+        <ul>
+            <li><strong>Dual-Pane UI Responsiva:</strong> Experiência visual onde as fórmulas de base teóricas são lidas
+                em paralelo à zona de teste do algoritmo interativo.</li>
+            <li><strong>Visualizador Semântico em GNU Octave:</strong> Todo o código referencial demonstrativo nos
+                painéis está integralmente escrito dentro da sintaxe científica computacional <strong>GNU
+                    Octave</strong>, possuindo fartos comentários instrucionais e glossário dinâmico que exibe aos
+                estudiosos o emprego prático das palavras reservadas.</li>
+            <li><strong>Simulador Interativo Iterador:</strong> Em vez de processar uma tabela seca para atingir a raiz
+                isolada final, as iterações podem ser executadas em "câmera lenta", visualizando a fórmula algorítmica
+                substituída pelos valores literais adotados em linha pelo código rodando na iteração subjacente atual.
+            </li>
+        </ul>
+
+        <div
+            style="margin-top: 4rem; text-align: center; border-top: 1px solid var(--panel-border); padding-top: 1.5rem; opacity: 0.6; font-size: 0.9em;">
+            <p>Desenvolvido para CEFET - 2026</p>
+        </div>
+    </main>
+</body>
+
+</html>

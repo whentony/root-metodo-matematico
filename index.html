@@ -11,7 +11,12 @@
 
 <body>
     <header class="app-header">
-        <h1>Explorador de Métodos Numéricos</h1>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h1 style="margin-bottom: 0;">Explorador de Métodos Numéricos</h1>
+            <a href="sobre.html"
+                style="color: var(--text-primary); text-decoration: none; padding: 0.4rem 1rem; border: 1px solid var(--panel-border); border-radius: 0.5rem; background: rgba(255,255,255,0.05); font-weight: 600; font-size: 0.9rem; transition: background 0.2s;">Sobre
+                o Projeto</a>
+        </div>
         <nav class="method-selector">
             <button class="active" data-method="bisection">Bisseção</button>
             <button data-method="newton">Newton-Raphson</button>
