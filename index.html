@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos Numéricos (Offline)</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="app-header">
+        <h1>Explorador de Métodos Numéricos</h1>
+        <nav class="method-selector">
+            <button class="active" data-method="bisection">Bisseção</button>
+            <button data-method="newton">Newton-Raphson</button>
+            <button data-method="secant">Secante</button>
+            <button data-method="briot-ruffini">Briot-Ruffini</button>
+            <button data-method="lagrange">Interpolação Lagrange</button>
+            <button data-method="neville">Neville</button>
+        </nav>
+    </header>
+
+    <main class="app-container">
+        <!-- Left Panel: Theory & Formula -->
+        <section class="panel theory-panel glass-panel">
+            <h2>Teoria & Fórmulas</h2>
+            <div id="theory-content">
+                <!-- Content injected by JS -->
+            </div>
+        </section>
+
+        <!-- Right Panel: Code & Playground -->
+        <section class="panel practice-panel">
+            <div class="code-container glass-panel">
+                <h2>O Algoritmo (GNU Octave)</h2>
+                <pre><code id="code-block" class="language-matlab">
+// Code injected by JS
+                </code></pre>
+            </div>
+
+            <div class="playground glass-panel">
+                <h2>Teste Prático</h2>
+                <form id="calc-form">
+                    <div class="input-group" id="func-input-group" style="flex: 1 1 100%;">
+                        <label for="func-input">Função f(x):</label>
+                        <input type="text" id="func-input" value="x^2 - 4" required placeholder="ex: x^2 - 4">
+                        <small style="color: var(--text-secondary); margin-top: 5px; font-size: 0.8rem;">Use notação
+                            simples: sen(x), cos(x), x^2, sqrt(x), exp(x)</small>
+                    </div>
+
+                    <!-- Bisection Inputs -->
+                    <div id="bisection-inputs" class="input-set input-row">
+                        <div class="input-group">
+                            <label for="interval-a">Intervalo [a]:</label>
+                            <input type="number" step="any" id="interval-a" value="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="interval-b">Intervalo [b]:</label>
+                            <input type="number" step="any" id="interval-b" value="3" required>
+                        </div>
+                    </div>
+
+                    <!-- Newton Inputs -->
+                    <div id="newton-inputs" class="input-set input-row hidden">
+                        <div class="input-group">
+                            <label for="initial-guess">Chute Inicial x<sub>0</sub>:</label>
+                            <input type="number" step="any" id="initial-guess" value="3">
+                        </div>
+                    </div>
+
+                    <!-- Secant Inputs -->
+                    <div id="secant-inputs" class="input-set input-row hidden">
+                        <div class="input-group">
+                            <label for="secant-x0">x<sub>0</sub>:</label>
+                            <input type="number" step="any" id="secant-x0" value="0">
+                        </div>
+                        <div class="input-group">
+                            <label for="secant-x1">x<sub>1</sub>:</label>
+                            <input type="number" step="any" id="secant-x1" value="3">
+                        </div>
+                    </div>
+
+                    <!-- Briot-Ruffini Inputs -->
+                    <div id="briot-ruffini-inputs" class="input-set input-row hidden">
+                        <div class="input-group" style="flex: 1 1 100%;">
+                            <label for="br-coeffs">Coeficientes de P(x), do maior grau para o menor, separados por
+                                vírgula:</label>
+                            <input type="text" id="br-coeffs" value="1, -5, 6"
+                                placeholder="ex: 1, -5, 6 para x² - 5x + 6 = 0">
+                        </div>
+                        <div class="input-group">
+                            <label for="br-a">Raiz a testar (x = a):</label>
+                            <input type="number" step="any" id="br-a" value="2">
+                        </div>
+                    </div>
+
+                    <!-- Lagrange Inputs -->
+                    <div id="lagrange-inputs" class="input-set input-row hidden">
+                        <div class="input-group" style="flex: 1 1 100%;">
+                            <label for="lagrange-points">Pontos conhecidos (x,y separados por ;):</label>
+                            <input type="text" id="lagrange-points" value="-1,4; 0,1; 2,-1"
+                                placeholder="ex: 1,2; 2,4; 3,9">
+                        </div>
+                        <div class="input-group">
+                            <label for="lagrange-x">Valor alvo de x:</label>
+                            <input type="number" step="any" id="lagrange-x" value="1">
+                        </div>
+                    </div>
+
+                    <!-- Neville Inputs -->
+                    <div id="neville-inputs" class="input-set input-row hidden">
+                        <div class="input-group" style="flex: 1 1 100%;">
+                            <label for="neville-points">Pontos conhecidos (x,y separados por ;):</label>
+                            <input type="text" id="neville-points" value="-1,4; 0,1; 2,-1"
+                                placeholder="ex: 1,2; 2,4; 3,9">
+                        </div>
+                        <div class="input-group">
+                            <label for="neville-x">Valor alvo de x:</label>
+                            <input type="number" step="any" id="neville-x" value="1">
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="tolerance">Tolerância (&epsilon;):</label>
+                            <input type="number" step="any" id="tolerance" value="0.001" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="max-iter">Max Iterações:</label>
+                            <input type="number" id="max-iter" value="50" required>
+                        </div>
+                    </div>
+
+                    <div class="button-row" style="display: flex; gap: 10px;">
+                        <button type="submit" id="btn-calc" class="btn-primary" style="flex: 1;">Calcular
+                            Direto</button>
+                        <button type="button" id="btn-simulate" class="btn-secondary" style="flex: 1;">Simular Passo a
+                            Passo</button>
+                    </div>
+                </form>
+
+                <div class="results-container">
+                    <h3>Resultados</h3>
+                    <div id="final-result" class="final-result"></div>
+
+                    <!-- View de Tabela Convencional -->
+                    <div id="table-view" class="table-scroller">
+                        <table id="results-table">
+                            <thead>
+                                <!-- Headers injected by JS -->
+                            </thead>
+                            <tbody>
+                                <!-- Rows injected by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- View do Simulador Passo a Passo -->
+                    <div id="simulator-view" class="simulator-container hidden">
+                        <div class="sim-header">
+                            <h4 id="sim-step-title">Passo 1/N</h4>
+                            <button type="button" id="btn-stop-sim" class="btn-secondary"
+                                style="padding: 2px 8px; font-size: 0.8rem;">Sair Simulação</button>
+                        </div>
+                        <div id="sim-content" class="sim-content">
+                            <!-- JS injects the step detail here -->
+                        </div>
+                        <div class="sim-controls">
+                            <button type="button" id="btn-sim-prev" class="btn-secondary" disabled>Anterior</button>
+                            <button type="button" id="btn-sim-next" class="btn-primary">Próximo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- JS Modules (ordem importa: parser → métodos → app) -->
+    <script src="js/parser.js"></script>
+    <script src="js/bisection.js"></script>
+    <script src="js/newton.js"></script>
+    <script src="js/secant.js"></script>
+    <script src="js/briot_ruffini.js"></script>
+    <script src="js/lagrange.js"></script>
+    <script src="js/neville.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
